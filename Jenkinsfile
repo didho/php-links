@@ -8,7 +8,7 @@ node {
 	if ( env.BRANCH_NAME != 'master' ) {
 		branchCleanup()
 		branchDeploy()
-		allTests()
+		//allTests()
 		userApproval()
 		branchCleanup()
 		msgbranchCleanup()
@@ -18,7 +18,7 @@ node {
 	if ( env.BRANCH_NAME == 'master' ) {
 		masterDevDeploy()
 		SonarQubeAnalysis()
-		allTests()
+		//allTests()
 		promoteQA()
 		userApproval3()
 		promotePROD()
@@ -38,7 +38,7 @@ def slackStartJob () {
     	stage 'slackStartJob'
     	sh 'git log -1 --pretty=%B > commit-log.txt'
     	GIT_COMMIT=readFile('commit-log.txt').trim()
-    	slackSend channel: 'aristides', color: '#37d660', message: ":metal: - PROJECT - ${env.JOB_NAME} - BUILD - ${env.BUILD_NUMBER} - (${GIT_COMMIT}) - Pipeline Started! "
+    	//slackSend channel: 'aristides', color: '#37d660', message: ":metal: - PROJECT - ${env.JOB_NAME} - BUILD - ${env.BUILD_NUMBER} - (${GIT_COMMIT}) - Pipeline Started! "
 }
 
 def branchDeploy () {
@@ -53,7 +53,7 @@ def branchCleanup () {
 }
 
 def msgbranchCleanup () {
-    	slackSend channel: 'aristides', color: '#f74545', message: ":thumbsup_all: - PROJECT - ${env.JOB_NAME} - BUILD - ${env.BUILD_NUMBER} - (${GIT_COMMIT}) - Branch environment deleted!"
+    	//slackSend channel: 'aristides', color: '#f74545', message: ":thumbsup_all: - PROJECT - ${env.JOB_NAME} - BUILD - ${env.BUILD_NUMBER} - (${GIT_COMMIT}) - Branch environment deleted!"
 }
 
 def masterDevDeploy () {
